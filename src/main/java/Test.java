@@ -20,7 +20,6 @@ public class Test {
 
         // add the 5 modules to the course
 
-        // bug here as student has to be enrolled before module or else is unassigned to it
         c.enrollStudent(luke);
         c.addModule(sci);
 

@@ -30,11 +30,10 @@ public class Course {
         // add course to module
         m.addCourse(this);
 
-        System.out.println(this);
-
         // enroll all current students
         for(Student s: students){
             s.addModule(m);
+            m.enrollStudent(s);
         }
     }
 
@@ -46,6 +45,7 @@ public class Course {
         // enroll student in all the courses modules
         for(Module m: modules){
             m.enrollStudent(s);
+            s.addModule(m);
         }
     }
 
