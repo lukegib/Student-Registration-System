@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 
 public class Student {
 
@@ -13,6 +14,9 @@ public class Student {
 
     private LocalDate today = LocalDate.now();
 
+    private ArrayList<Course> courses = new ArrayList<>();
+    private ArrayList<Module> modules = new ArrayList<>();
+
     public Student(String name, int birthYear, int birthMonth, int birthDay){
         this.name = name;
 
@@ -24,6 +28,14 @@ public class Student {
 
         count++;
         id = count;
+    }
+
+    public void addCourse(Course c){
+        courses.add(c);
+    }
+
+    public void addModule(Module m){
+        modules.add(m);
     }
 
     public LocalDate getDOB() {
