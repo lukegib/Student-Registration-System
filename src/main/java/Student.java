@@ -38,6 +38,22 @@ public class Student {
         modules.add(m);
     }
 
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public String getModules() {
+
+        String str = "";
+
+        for(Module m: modules){
+            str += "\n";
+            str += m.getName();
+        }
+
+        return str;
+    }
+
     public LocalDate getDOB() {
         return DOB;
     }

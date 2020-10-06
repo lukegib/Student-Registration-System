@@ -20,12 +20,17 @@ public class Test {
 
         // add the 5 modules to the course
 
-        c.enrollStudent(luke);
         c.addModule(sci);
+        c.addModule(arc);
+        c.addModule(art);
+        c.addModule(math);
+        c.addModule(ai);
 
         // add the student to the course... the student should now be enrolled in the 5 modules
 
-        //
+        c.enrollStudent(luke);
+
+        System.out.println(luke.getModules());
 
     }
 }
