@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Student {
 
+    //
+    // Local Variables
+    //
+
     private String name;
     private String username;
     private LocalDate DOB;
@@ -12,8 +16,6 @@ public class Student {
     static long count = 0;
     private long id;
 
-    private LocalDate today = LocalDate.now();
-
     private ArrayList<Course> courses = new ArrayList<>();
     private ArrayList<Module> modules = new ArrayList<>();
 
@@ -21,7 +23,7 @@ public class Student {
         this.name = name;
 
         this.DOB = LocalDate.of(birthYear, birthMonth, birthDay);
-        Period p = this.DOB.until(today);
+        Period p = this.DOB.until(LocalDate.now());
         this.setAge(p.getYears());
 
         this.setUsername(this.name + age);
@@ -30,37 +32,29 @@ public class Student {
         id = count;
     }
 
+    //
+    // Add and Remove Courses / Modules
+    //
+
     public void addCourse(Course c){
         courses.add(c);
+    }
+
+    public void removeCourse(Course c){
+        courses.remove(c);
     }
 
     public void addModule(Module m){
         modules.add(m);
     }
 
-    public ArrayList<Course> getCourses() {
-        return courses;
+    public void removeModule(Module m) {
+        modules.remove(m);
     }
 
-    public String getModules() {
-
-        String str = "";
-
-        for(Module m: modules){
-            str += "\n";
-            str += m.getName();
-        }
-
-        return str;
-    }
-
-    public LocalDate getDOB() {
-        return DOB;
-    }
-
-    public void setDOB(LocalDate DOB) {
-        this.DOB = DOB;
-    }
+    //
+    // Getters and Setters
+    //
 
     public String getName() {
         return name;
@@ -78,11 +72,27 @@ public class Student {
         this.username = username;
     }
 
-    public int getAge() {
+    public LocalDate getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(LocalDate DOB) {
+        this.DOB = DOB;
+        Period p = this.DOB.until(LocalDate.now());
+        this.setAge(p.getYears());
+    }
+
+    public void setDOB(int year, int month, int day){
+        DOB = LocalDate.of(year, month, day);
+        Period p = this.DOB.until(LocalDate.now());
+        this.setAge(p.getYears());
+    }
+
+    private int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    private void setAge(int age) {
         this.age = age;
     }
 }

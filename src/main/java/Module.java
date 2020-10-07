@@ -2,6 +2,10 @@ import java.util.ArrayList;
 
 public class Module {
 
+    //
+    // Local Variables
+    //
+
     private String name;
     private String id;
     private String teacher;
@@ -9,19 +13,39 @@ public class Module {
     private ArrayList<Student> students = new ArrayList<>();
     private ArrayList<Course> courses = new ArrayList<>();
 
+    //
+    // Constructor
+    //
+
     public Module(String name, String id, String teacher){
         this.name = name;
         this.id = id;
         this.teacher = teacher;
     }
 
+    //
+    // Add and Remove Courses / Students
+    //
+
     public void addCourse(Course c){
         courses.add(c);
+    }
+
+    public void removeCourse(Course c){
+        courses.remove(c);
     }
 
     public void enrollStudent(Student s){
         students.add(s);
     }
+
+    public void unenrollStudent(Student s){
+        students.remove(s);
+    }
+
+    //
+    // Getters and Setters
+    //
 
     public String getName() {
         return name;

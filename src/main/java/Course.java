@@ -3,6 +3,10 @@ import java.util.ArrayList;
 
 public class Course {
 
+    //
+    // Local Variables
+    //
+
     private String name;
     private String id;
     private String coordinator;
@@ -12,6 +16,10 @@ public class Course {
 
     private ArrayList<Module> modules = new ArrayList<>();
     private ArrayList<Student> students = new ArrayList<>();
+
+    //
+    // Constructor
+    //
 
     public Course(String name, String id, String coordinator, int startDay, int startMonth, int duration) {
         this.name = name;
@@ -24,6 +32,10 @@ public class Course {
         end = start.plusMonths(duration);
     }
 
+    //
+    // Add and remove Modules / Students
+    //
+
     public void addModule(Module m){
         modules.add(m);
 
@@ -34,6 +46,16 @@ public class Course {
         for(Student s: students){
             s.addModule(m);
             m.enrollStudent(s);
+        }
+    }
+
+    public void removeModule(Module m){
+        modules.remove(m);
+        m.removeCourse(this);
+
+        for(Student s: students){
+            s.removeModule(m);
+            m.unenrollStudent(s);
         }
     }
 
@@ -49,21 +71,19 @@ public class Course {
         }
     }
 
-    public LocalDate getStart() {
-        return start;
+    public void unenrollStudent(Student s){
+        students.remove(s);
+        s.removeCourse(this);
+
+        for(Module m: modules){
+            m.unenrollStudent(s);
+            s.removeModule(m);
+        }
     }
 
-    public void setStart(LocalDate start) {
-        this.start = start;
-    }
-
-    public LocalDate getEnd() {
-        return end;
-    }
-
-    public void setEnd(LocalDate end) {
-        this.end = end;
-    }
+    //
+    // Getters and Setters
+    //
 
     public String getName() {
         return name;
@@ -87,5 +107,29 @@ public class Course {
 
     public void setCoordinator(String coordinator) {
         this.coordinator = coordinator;
+    }
+
+    public LocalDate getStart() {
+        return start;
+    }
+
+    public void setStart(LocalDate start) {
+        this.start = start;
+    }
+
+    public void setStart(int year, int month, int day){
+        start = LocalDate.of(year, month, day);
+    }
+
+    public LocalDate getEnd() {
+        return end;
+    }
+
+    public void setEnd(LocalDate end) {
+        this.end = end;
+    }
+
+    public void setEnd(int year, int month, int day){
+        end = LocalDate.of(year, month, day);
     }
 }
