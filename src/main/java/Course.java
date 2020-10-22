@@ -10,6 +10,7 @@ public class Course {
     private String name;
     private String id;
     private String coordinator;
+    private int duration;
 
     private LocalDate start;
     private LocalDate end;
@@ -25,11 +26,11 @@ public class Course {
         this.name = name;
         this.id = id;
         this.coordinator = coordinator;
+        this.duration = duration;
 
         int thisYear = LocalDate.now().getYear();
 
-        start = LocalDate.of(thisYear, startMonth, startDay);
-        end = start.plusMonths(duration);
+        setStart(thisYear, startMonth, startDay);
     }
 
     //
@@ -109,27 +110,34 @@ public class Course {
         this.coordinator = coordinator;
     }
 
+    public int getDuration(){
+        return duration;
+    }
+
+    public void setDuration(int duration){
+        this.duration = duration;
+        setEnd(getStart().plusMonths(duration));
+    }
+
     public LocalDate getStart() {
         return start;
     }
 
     public void setStart(LocalDate start) {
         this.start = start;
+        setEnd(start.plusMonths(duration));
     }
 
     public void setStart(int year, int month, int day){
         start = LocalDate.of(year, month, day);
+        setEnd(start.plusMonths(duration));
     }
 
     public LocalDate getEnd() {
         return end;
     }
 
-    public void setEnd(LocalDate end) {
+    private void setEnd(LocalDate end) {
         this.end = end;
-    }
-
-    public void setEnd(int year, int month, int day){
-        end = LocalDate.of(year, month, day);
     }
 }
