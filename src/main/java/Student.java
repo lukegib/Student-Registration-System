@@ -24,9 +24,9 @@ public class Student {
 
         this.DOB = LocalDate.of(birthYear, birthMonth, birthDay);
         Period p = this.DOB.until(LocalDate.now());
-        this.setAge(p.getYears());
+        setAge(p.getYears());
 
-        this.setUsername(this.name + age);
+        setUsername(name + getAge());
 
         count++;
         id = count;
@@ -69,7 +69,7 @@ public class Student {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.replaceAll("\\s+","");
     }
 
     public LocalDate getDOB() {
@@ -88,7 +88,7 @@ public class Student {
         this.setAge(p.getYears());
     }
 
-    private int getAge() {
+    public int getAge() {
         return age;
     }
 
