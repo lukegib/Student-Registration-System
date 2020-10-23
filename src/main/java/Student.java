@@ -19,21 +19,31 @@ public class Student {
     private ArrayList<Course> courses = new ArrayList<>();
     private ArrayList<Module> modules = new ArrayList<>();
 
+    //
+    // Constructor
+    //
+
     public Student(String name, int birthYear, int birthMonth, int birthDay){
         this.name = name;
 
         this.DOB = LocalDate.of(birthYear, birthMonth, birthDay);
+
+        // Get age by calculating the difference between now and the DOB
         Period p = this.DOB.until(LocalDate.now());
         setAge(p.getYears());
 
+        // Set the default Username to name+age
         setUsername(name + getAge());
 
+        // Set the ID by incrementing the static count variable
         count++;
         id = count;
     }
 
     //
-    // Add and Remove Courses / Modules
+    // Methods to Add and Remove Courses / Modules
+    //
+    // Note: These should not be directly accessed - only done so through Course methods
     //
 
     public void addCourse(Course c){
@@ -52,26 +62,9 @@ public class Student {
         modules.remove(m);
     }
 
-    public ArrayList<Course> getCourses() {
-        return courses;
-    }
-
-    public ArrayList<Module> getModules() {
-        return modules;
-    }
-
     //
     // Getters and Setters
     //
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -86,6 +79,7 @@ public class Student {
     }
 
     public void setUsername(String username) {
+        // Remove any whitespaces from the entered string
         this.username = username.replaceAll("\\s+","");
     }
 
@@ -95,12 +89,16 @@ public class Student {
 
     public void setDOB(LocalDate DOB) {
         this.DOB = DOB;
+
+        // Set the age using the same technique as constructor
         Period p = this.DOB.until(LocalDate.now());
         this.setAge(p.getYears());
     }
 
     public void setDOB(int year, int month, int day){
         DOB = LocalDate.of(year, month, day);
+
+        // Set the age using the same technique as constructor
         Period p = this.DOB.until(LocalDate.now());
         this.setAge(p.getYears());
     }
@@ -111,5 +109,21 @@ public class Student {
 
     private void setAge(int age) {
         this.age = age;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public ArrayList<Module> getModules() {
+        return modules;
     }
 }
