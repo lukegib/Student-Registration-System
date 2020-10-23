@@ -43,7 +43,15 @@ public class Module {
         students.remove(s);
     }
 
-    //
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+//
     // Getters and Setters
     //
 
