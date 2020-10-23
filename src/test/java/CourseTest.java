@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -97,4 +98,41 @@ public class CourseTest {
 
     }
 
+    @Test
+    public void testModules(){
+        ArrayList<Module> expectedModules = new ArrayList<>();
+
+        assertEquals("Fail - Course did not return the expected modules", expectedModules, c.getModules());
+
+        Module m = new Module("Test Module", "T101", "John Doe");
+        expectedModules.add(m);
+
+        c.addModule(m);
+
+        assertEquals("Fail - Course did not add the module correctly", expectedModules, c.getModules());
+
+        expectedModules.remove(m);
+        c.removeModule(m);
+
+        assertEquals("Fail - Course did not remove the module correctly", expectedModules, c.getModules());
+    }
+
+    @Test
+    public void testStudents(){
+        ArrayList<Student> expectedStudents = new ArrayList<>();
+
+        assertEquals("Fail - Course did not return the expected students", expectedStudents, c.getStudents());
+
+        Student s = new Student("John Doe", 2000, 1, 1);
+        expectedStudents.add(s);
+
+        c.enrollStudent(s);
+
+        assertEquals("Fail - Course did not add the student correctly", expectedStudents, c.getStudents());
+
+        expectedStudents.remove(s);
+        c.unenrollStudent(s);
+
+        assertEquals("Fail - Course did not remove the student correctly", expectedStudents, c.getStudents());
+    }
 }

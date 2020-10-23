@@ -82,6 +82,14 @@ public class Course {
         }
     }
 
+    public ArrayList<Module> getModules() {
+        return modules;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
     //
     // Getters and Setters
     //
