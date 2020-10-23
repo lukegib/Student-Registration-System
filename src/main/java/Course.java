@@ -1,6 +1,9 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+// The Course class is the core of the registration system the other classes (Student & Module) work through it.
+// Students and Modules are added to the Course which in turn handles adding the student to the module and vice versa.
+
 public class Course {
 
     //
@@ -34,16 +37,16 @@ public class Course {
     }
 
     //
-    // Add and remove Modules / Students
+    // Methods to Add and Remove Modules / Students
     //
 
     public void addModule(Module m){
         modules.add(m);
 
-        // add course to module
+        // Add the Course to the Module
         m.addCourse(this);
 
-        // enroll all current students
+        // Enroll each Student in the Module
         for(Student s: students){
             s.addModule(m);
             m.enrollStudent(s);
@@ -52,8 +55,11 @@ public class Course {
 
     public void removeModule(Module m){
         modules.remove(m);
+
+        // Remove the Course from the Module object
         m.removeCourse(this);
 
+        // Unenroll each of the Courses Students from the Module
         for(Student s: students){
             s.removeModule(m);
             m.unenrollStudent(s);
@@ -61,11 +67,12 @@ public class Course {
     }
 
     public void enrollStudent(Student s){
-        // add student
         students.add(s);
-        // add course to student
+
+        // Add the Course to the Student
         s.addCourse(this);
-        // enroll student in all the courses modules
+
+        // Enroll the Student in the Courses Modules
         for(Module m: modules){
             m.enrollStudent(s);
             s.addModule(m);
@@ -74,20 +81,15 @@ public class Course {
 
     public void unenrollStudent(Student s){
         students.remove(s);
+
+        // Remove the Course from the Student object
         s.removeCourse(this);
 
+        // Unenroll the Student from the Courses Modules
         for(Module m: modules){
             m.unenrollStudent(s);
             s.removeModule(m);
         }
-    }
-
-    public ArrayList<Module> getModules() {
-        return modules;
-    }
-
-    public ArrayList<Student> getStudents() {
-        return students;
     }
 
     //
@@ -124,6 +126,8 @@ public class Course {
 
     public void setDuration(int duration){
         this.duration = duration;
+
+        // Set the end to represent the new Course duration
         setEnd(getStart().plusMonths(duration));
     }
 
@@ -133,11 +137,15 @@ public class Course {
 
     public void setStart(LocalDate start) {
         this.start = start;
+
+        // Set the end to represent the new Course starting date
         setEnd(start.plusMonths(duration));
     }
 
     public void setStart(int year, int month, int day){
         start = LocalDate.of(year, month, day);
+
+        // Set the end to represent the new Course starting date
         setEnd(start.plusMonths(duration));
     }
 
@@ -147,5 +155,13 @@ public class Course {
 
     private void setEnd(LocalDate end) {
         this.end = end;
+    }
+
+    public ArrayList<Module> getModules() {
+        return modules;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
     }
 }
