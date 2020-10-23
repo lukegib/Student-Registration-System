@@ -52,9 +52,26 @@ public class Student {
         modules.remove(m);
     }
 
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public ArrayList<Module> getModules() {
+        return modules;
+    }
+
     //
     // Getters and Setters
     //
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
