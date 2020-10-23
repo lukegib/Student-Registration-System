@@ -24,7 +24,9 @@ public class Module {
     }
 
     //
-    // Add and Remove Courses / Students
+    // Methods to Add and Remove Courses / Students
+    //
+    // Note: These should not be directly accessed - only done so through Course methods
     //
 
     public void addCourse(Course c){
@@ -43,15 +45,7 @@ public class Module {
         students.remove(s);
     }
 
-    public ArrayList<Student> getStudents() {
-        return students;
-    }
-
-    public ArrayList<Course> getCourses() {
-        return courses;
-    }
-
-//
+    //
     // Getters and Setters
     //
 
@@ -77,5 +71,13 @@ public class Module {
 
     public void setTeacher(String teacher) {
         this.teacher = teacher;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    public ArrayList<Course> getCourses() {
+        return courses;
     }
 }
