@@ -1,8 +1,6 @@
 import org.junit.Test;
-
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 // Unit Tests for the Course Class
@@ -72,12 +70,12 @@ public class CourseTest {
     @Test
     public void testStart(){
         int expectedYear = LocalDate.now().getYear();
-        LocalDate expectedStart = LocalDate.of(expectedYear, 9, 1);
+        LocalDate expectedStart = new LocalDate(expectedYear, 9, 1);
 
         // testing getStart()
         assertEquals("Fail - Course did not return the expected start date", expectedStart, c.getStart());
 
-        expectedStart = LocalDate.of(2050, 1, 1);
+        expectedStart = new LocalDate(2050, 1, 1);
         c.setStart(expectedStart);
 
         // testing setStart() - LocalDate Option
@@ -93,18 +91,18 @@ public class CourseTest {
     @Test
     public void testEnd(){
         int expectedYear = LocalDate.now().plusMonths(12).getYear();
-        LocalDate expectedEnd = LocalDate.of(expectedYear, 9, 1);
+        LocalDate expectedEnd = new LocalDate(expectedYear, 9, 1);
 
         // testing getEnd()
         assertEquals("Fail - Course did not return the expected end date", expectedEnd, c.getEnd());
 
         c.setStart(2050, 1, 1);
-        expectedEnd = LocalDate.of(2051, 1, 1);
+        expectedEnd = new LocalDate(2051, 1, 1);
 
         // testing that setStart() alters End correctly
         assertEquals("Fail - Course did not set the end date correctly", expectedEnd, c.getEnd());
 
-        expectedEnd = LocalDate.of(2052, 1, 1);
+        expectedEnd = new LocalDate(2052, 1, 1);
         c.setDuration(24);
 
         // testing that setDuration() sets the End correctly

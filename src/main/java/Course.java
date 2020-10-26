@@ -1,5 +1,5 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
+import org.joda.time.LocalDate;
 
 // The Course class is the core of the registration system the other classes (Student & Module) work through it.
 // Students and Modules are added to the Course which in turn handles adding the student to the module and vice versa.
@@ -143,7 +143,7 @@ public class Course {
     }
 
     public void setStart(int year, int month, int day){
-        start = LocalDate.of(year, month, day);
+        start = new LocalDate(year, month, day);
 
         // Set the end to represent the new Course starting date
         setEnd(start.plusMonths(duration));

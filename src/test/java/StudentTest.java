@@ -1,9 +1,7 @@
 import org.junit.Test;
-
-import java.time.LocalDate;
-import java.time.Period;
+import org.joda.time.LocalDate;
+import org.joda.time.Period;
 import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 // Unit Tests for the Student Class
@@ -41,12 +39,12 @@ public class StudentTest {
 
     @Test
     public void testDOB(){
-        LocalDate expectedDOB = LocalDate.of(1990, 10, 10);
+        LocalDate expectedDOB = new LocalDate(1990, 10, 10);
 
         // testing getDOB()
         assertEquals("Fail - Student did not return the expected DOB", expectedDOB, s.getDOB());
 
-        expectedDOB = LocalDate.of(2000, 1, 1);
+        expectedDOB = new LocalDate(2000, 1, 1);
         s.setDOB(expectedDOB);
 
         // testing setDOB() - LocalDate Option
@@ -60,7 +58,7 @@ public class StudentTest {
 
     @Test
     public void testAge(){
-        Period p = s.getDOB().until(LocalDate.now());
+        Period p = new Period(s.getDOB(), LocalDate.now());
         int expectedAge = p.getYears();
 
         // testing getAge()

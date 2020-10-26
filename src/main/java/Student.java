@@ -1,5 +1,5 @@
-import java.time.LocalDate;
-import java.time.Period;
+import org.joda.time.LocalDate;
+import org.joda.time.Period;
 import java.util.ArrayList;
 
 public class Student {
@@ -26,10 +26,10 @@ public class Student {
     public Student(String name, int birthYear, int birthMonth, int birthDay){
         this.name = name;
 
-        this.DOB = LocalDate.of(birthYear, birthMonth, birthDay);
+        this.DOB = new LocalDate(birthYear, birthMonth, birthDay);
 
         // Get age by calculating the difference between now and the DOB
-        Period p = this.DOB.until(LocalDate.now());
+        Period p = new Period(this.DOB, LocalDate.now());
         setAge(p.getYears());
 
         // Set the default Username to name+age
@@ -91,15 +91,15 @@ public class Student {
         this.DOB = DOB;
 
         // Set the age using the same technique as constructor
-        Period p = this.DOB.until(LocalDate.now());
+        Period p = new Period(this.DOB, LocalDate.now());
         this.setAge(p.getYears());
     }
 
     public void setDOB(int year, int month, int day){
-        DOB = LocalDate.of(year, month, day);
+        DOB = new LocalDate(year, month, day);
 
         // Set the age using the same technique as constructor
-        Period p = this.DOB.until(LocalDate.now());
+        Period p = new Period(this.DOB, LocalDate.now());
         this.setAge(p.getYears());
     }
 
