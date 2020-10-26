@@ -30,19 +30,23 @@ public class Module {
     //
 
     public void addCourse(Course c){
-        courses.add(c);
+        if(!courses.contains(c)) {
+            courses.add(c);
+        }
     }
 
     public void removeCourse(Course c){
-        courses.remove(c);
+            courses.remove(c);
     }
 
     public void enrollStudent(Student s){
-        students.add(s);
+        if(!students.contains(s)) {
+            students.add(s);
+        }
     }
 
     public void unenrollStudent(Student s){
-        students.remove(s);
+            students.remove(s);
     }
 
     //

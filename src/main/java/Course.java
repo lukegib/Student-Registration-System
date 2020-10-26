@@ -41,54 +41,62 @@ public class Course {
     //
 
     public void addModule(Module m){
-        modules.add(m);
+        if(!modules.contains(m)) {
+            modules.add(m);
 
-        // Add the Course to the Module
-        m.addCourse(this);
+            // Add the Course to the Module
+            m.addCourse(this);
 
-        // Enroll each Student in the Module
-        for(Student s: students){
-            s.addModule(m);
-            m.enrollStudent(s);
+            // Enroll each Student in the Module
+            for (Student s : students) {
+                s.addModule(m);
+                m.enrollStudent(s);
+            }
         }
     }
 
     public void removeModule(Module m){
-        modules.remove(m);
+        if(modules.contains(m)) {
+            modules.remove(m);
 
-        // Remove the Course from the Module object
-        m.removeCourse(this);
+            // Remove the Course from the Module object
+            m.removeCourse(this);
 
-        // Unenroll each of the Courses Students from the Module
-        for(Student s: students){
-            s.removeModule(m);
-            m.unenrollStudent(s);
+            // Unenroll each of the Courses Students from the Module
+            for (Student s : students) {
+                s.removeModule(m);
+                m.unenrollStudent(s);
+            }
         }
     }
 
     public void enrollStudent(Student s){
-        students.add(s);
+        if(!students.contains(s)) {
+            students.add(s);
 
-        // Add the Course to the Student
-        s.addCourse(this);
+            // Add the Course to the Student
+            s.addCourse(this);
 
-        // Enroll the Student in the Courses Modules
-        for(Module m: modules){
-            m.enrollStudent(s);
-            s.addModule(m);
+            // Enroll the Student in the Courses Modules
+            for (Module m : modules) {
+                m.enrollStudent(s);
+                s.addModule(m);
+            }
         }
     }
 
     public void unenrollStudent(Student s){
-        students.remove(s);
+        if(students.contains(s)) {
+            students.remove(s);
 
-        // Remove the Course from the Student object
-        s.removeCourse(this);
+            // Remove the Course from the Student object
+            s.removeCourse(this);
 
-        // Unenroll the Student from the Courses Modules
-        for(Module m: modules){
-            m.unenrollStudent(s);
-            s.removeModule(m);
+            // Unenroll the Student from the Courses Modules
+            for (Module m : modules) {
+                m.unenrollStudent(s);
+                s.removeModule(m);
+            }
         }
     }
 

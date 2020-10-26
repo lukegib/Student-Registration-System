@@ -47,7 +47,9 @@ public class Student {
     //
 
     public void addCourse(Course c){
-        courses.add(c);
+        if(!courses.contains(c)) {
+            courses.add(c);
+        }
     }
 
     public void removeCourse(Course c){
@@ -55,7 +57,9 @@ public class Student {
     }
 
     public void addModule(Module m){
-        modules.add(m);
+        if(!modules.contains(m)){
+            modules.add(m);
+        }
     }
 
     public void removeModule(Module m) {
